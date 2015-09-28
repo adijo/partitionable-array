@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Partitionable Array : Undergraduate research project in data structure design taken from Ohio state university&#39;s page.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Partitionable Array</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/adijo/partitionable-array">View on GitHub</a>
+
+          <h1 id="project_title">Partitionable Array</h1>
+          <h2 id="project_tagline">Undergraduate research project in data structure design taken from Ohio state university&#39;s page.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/adijo/partitionable-array/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/adijo/partitionable-array/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="welcome" class="anchor" href="#welcome" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome,</h3>
+
+<p>In this project, I have designed and developed a new data structure that stores a collection of <code>n</code> elements of type <code>T</code> and supports an operation that tells you how many elements satisfy a predicate <code>P</code> and an operation that returns the index of some element that satisfies <code>P</code> in constant time. This idea was borrowed from OSU's page.</p>
+
+<hr>
+
+<h1>
+<a id="language" class="anchor" href="#language" aria-hidden="true"><span class="octicon octicon-link"></span></a>Language</h1>
+
+<p>I have been experimenting and using Scala for multiple projects recently, I thought I'd use it for this project too.</p>
+
+<hr>
+
+<h1>
+<a id="design" class="anchor" href="#design" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design</h1>
+
+<ul>
+<li><p>The data structure is instantiated by providing it with two arguments, a predicate <code>P</code> that is just a function from <code>T =&gt; Boolean</code> which tells if you the particular element of type <code>T</code> satisfies the predicate <code>P</code>. The second argument is an integer that indicates the size of the collection.</p></li>
+<li><p>We maintain an internet <code>HashSet</code> of integers that contains the indices of all the elements that satisfy the provided predicate <code>P</code>. </p></li>
+<li><p>The two important operations on the data structure are <code>getCount()</code> and <code>getOne()</code>. The usual <code>set(index, value)</code> and <code>get(index)</code> operations that are part of every array are implemented as well.</p></li>
+</ul>
+
+<h1>
+<a id="supported-functions" class="anchor" href="#supported-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported functions</h1>
+
+<ul>
+<li><p><code>set(index : Integer, value : T)</code>: When an element is added, we first check if the position that it is to be set is currently not occupied by any other element. If it isn't we simply set the value at particular index and if it satisfies <code>P</code>, add this index to our <code>HashSet</code>. If the index is already occupied by another element, we have to handle two cases. If the original element at that index satisfies the predicate <code>P</code>, it is to be removed from the internal <code>HashSet</code>. If it did not satisfy the predicate in the first place, we can simply remove it. Now, we are free to set the new value to the given index, and as before, to the <code>HashSet</code> if it satisfies <code>P</code>.</p></li>
+<li><p><code>get(index : Integer)</code>: This operation is relatively simple, it simply returns the value at the particular <code>index</code> in constant time.</p></li>
+<li><p><code>getCount()</code>: Due to the internally maintained <code>HashSet</code>, this operation simply involves returning the cardinality of that set in constant time. </p></li>
+<li><p><code>getOne()</code>: The first element of our maintained <code>HashSet</code> is returned in constant time.</p></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Partitionable Array maintained by <a href="https://github.com/adijo">adijo</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
